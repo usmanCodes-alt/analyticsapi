@@ -5,3 +5,4 @@ timescaledb
 sqlmodel
 pydantic
 sqlalchemy
+black
