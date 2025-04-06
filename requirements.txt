@@ -6,3 +6,5 @@ sqlmodel
 pydantic
 sqlalchemy
 black
+python-decouple
+psycopg[binary]
