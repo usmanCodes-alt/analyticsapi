@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from api.db.session import init_db
 from api.events import router as event_rounter
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # before app start up
