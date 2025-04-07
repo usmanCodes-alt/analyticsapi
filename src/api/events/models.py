@@ -12,7 +12,11 @@ from timescaledb.utils import get_utc_now
 class EventModel(TimescaleModel, table=True):
     # id: Optional[int] = Field(default=None, primary_key=True)
     page: str = Field(index=True)
-    description: Optional[str] = Field(default="")
+    user_agent: Optional[str] = Field(default="", index=True)  # browser
+    ip_address: Optional[str] = Field(default="", index=True)
+    referrer: Optional[str] = Field(default="", index=True)
+    session_id: Optional[str] = Field(index=True)
+    duration: Optional[int] = Field(default=0)
     # created_at: datetime = Field(
     #     default_factory=get_utc_now,
     #     sa_type=sqlmodel.DateTime(timezone=True),
@@ -32,13 +36,19 @@ class EventBucketSchema(SQLModel):
     bucket: datetime
     page: str
     event_count: int
+    operating_system: Optional[str] = Field(default="")
+    avg_duration: Optional[float] = Field(default=0.0)
 
 
 class EventCreateSchema(SQLModel):
     page: str
-    description: Optional[str] = Field(default="")
+    user_agent: Optional[str] = Field(default="", index=True)  # browser
+    ip_address: Optional[str] = Field(default="", index=True)
+    referrer: Optional[str] = Field(default="", index=True)
+    session_id: Optional[str] = Field(index=True)
+    duration: Optional[int] = Field(default=0)
 
 
-class EventUpdateSchema(SQLModel):
-    description: str
-    page: Optional[str] = Field(default="")
+# class EventUpdateSchema(SQLModel):
+#     description: str
+#     page: Optional[str] = Field(default="")
