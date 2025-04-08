@@ -19,7 +19,6 @@ services:
     volumes:
       - ./src:/code:rw
 
-  # postgresql+psycopg://time-user:time-pw@hostvalue:5432/timescaledb
   db_service:
     image: timescale/timescaledb:latest-pg17
     environment:
