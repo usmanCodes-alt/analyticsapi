@@ -67,7 +67,7 @@ This will start the API at `http://localhost:8000`.
 
 The API provides the following endpoints:
 
-### 1. **POST /events**
+### 1. **POST /api/events**
 
 Store an event with time-series data.
 
@@ -75,8 +75,21 @@ Store an event with time-series data.
 
 ```json
 {
-  "event_type": "page_view",
-  "timestamp": "2025-04-08T10:00:00Z",
-  "user_id": "12345"
+  "page": "/about",
+  "user_agent": "2025-04-08T10:00:00Z",
+  "ip_address": "<some IP>",
+  "referrer": "<some Referrer>",
+  "session_id": "<some Session_id>",
+  "duration": "<1 minute etc>"
 }
+```
+
+### 1. **GET api/events**
+
+Retrieve aggregated event data, bucketed by a specified duration (default is "1 day"). The response includes the operating system breakdown, the page visited, the average event duration, and the count of events for each bucket.
+
+**Request:**
+
+```bash
+   response = requests.get(endpoint, params={'duration': '1 week', 'pages': []})
 ```
